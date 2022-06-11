@@ -11,17 +11,17 @@ function App() {
     if (index < 0) {
       setIndex(lastIndex);
     }
-    if(index > lastIndex) {
-      setIndex(0)
+    if (index > lastIndex) {
+      setIndex(0);
     }
   }, [index, people]);
 
   useEffect(() => {
-    let slider =  setInterval(() => {
+    let slider = setInterval(() => {
       setIndex(index + 1);
-    },5000)
-    return  () => clearInterval(slider);
-  },[index])
+    }, 3000);
+    return () => clearInterval(slider);
+  }, [index]);
 
   return (
     <section className="section">
@@ -31,8 +31,7 @@ function App() {
         </h2>
       </div>
       <div className="section-center">
-        {people.map((person, personIndex) => {
-          const { id, image, name, title, quote } = person;
+        {people.map(({ id, image, name, title, quote }, personIndex) => {
           let position = "nextSlide";
           if (personIndex === index) {
             position = "activeSlide";
